@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Welcome to Flack
+{% endblock %}
+
+{% block script %}
+	<script src="{{ url_for('static', filename='js/index.js') }}"></script>	
+{% endblock %}
+
+{% block body %}
+<h2>#1 chat in the world</h2>
+<form action="{{ url_for('auth') }}" method="POST">
+  <div class="form-group">
+    <label for="username">Display name</label>
+    <input type="text" class="form-control" name="username" placeholder="Enter display name" required>
+    <small id="hint" class="form-text text-muted">This will be displayed as your name in chats</small>
+    <a href="{{ url_for('auth') }}">asdf</a>
+  </div>
+  <button type="submit" class="btn btn-primary">Join</button>
+</form>
+{% endblock %}

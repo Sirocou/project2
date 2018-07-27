@@ -1,0 +1,76 @@
+body {
+    //background: url("/static/img/book.jpg") no-repeat fixed;
+    background-size: cover;
+}
+
+h4, h5, label {
+	color: #0d52c4;
+}
+
+form {
+  width: 80%;
+  margin: 5px auto;
+}
+
+.container {
+  margin: 40px auto;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: center;
+  background-color: #ebe6e6;
+  //background-color: #fafafa;
+  border-radius: 10px;
+  width: 90%;
+}
+
+@media (min-width: 500px){
+  .container {
+    width: 400px;
+  }
+}
+
+@media (max-width: 500px){
+  .container {
+    margin: 4vh auto;
+    padding: 2vh auto;
+  }
+}
+
+.card-body {
+  text-align: left;
+}
+
+#more-btn {
+  margin: 2px auto;
+  display: block;
+}
+
+.card {
+  margin: 10px auto;
+}
+
+.btn {
+  display: block;
+  margin: 2px auto;
+}
+
+.footer {
+  margin-top: 20px;
+}
+
+.foot {
+  display: block;
+  margin-top: 20px;
+}
+
+.modal-dialog{
+    overflow-y: initial !important
+}
+.modal-body{
+    height: 60vh;
+    overflow-y: auto;
+}
+
+#submit-msg, #msg-text {
+  display: inline-block;
+}

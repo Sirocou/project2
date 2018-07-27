@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+
+{% block script %}
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+	<script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+{% endblock %}
+
+{% block css %}
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}">
+{% endblock %}
+
+{% block body %}
+	<p id='welcome'>Welcome</p>
+	<form id='createchannel' action="#" method="get" accept-charset="utf-8">
+		<div class="form-group">
+		    <label for="channelname">Create a new channel</label>
+		    <input type="text" class="form-control" id="channelname" placeholder="Enter channel name" required>
+		    <small id="hint" class="form-text text-muted">Channel name must be unique</small>
+	  	</div>
+	  	<button type="submit" class="btn btn-primary">Create</button>	
+	</form>
+	<h4 class="text-primary">Channels:</h4>
+	<ul class="channels list-group">
+		{% for item in channels %}
+			<li class="channels list-group-item d-flex justify-content-between align-items-center" data-channel="{{ item['chname'] }}">
+		    	{{ item['chname'] }}
+				<span class="badge badge-primary badge-pill">{{ item['messages'] | length }}</span>
+		  	</li>
+		{% endfor %}
+	</ul>
+
+	<!-- Button trigger modal -->
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+	  Launch demo modal
+	</button>
+
+	<!-- Modal -->
+	<div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Chat title</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+			<div class="messages list-group">
+			  <div class="message list-group-item list-group-item-action flex-column align-items-start">
+			    <div class="d-flex w-100 justify-content-between">
+			      <h5 class="mb-1">ronnie</h5>
+			      <small>3 days ago</small>
+			    </div>
+			    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+			    <small>Donec id elit non mi porta.</small>
+			  </div>
+	      	</div>
+	      </div>
+	      <div class="modal-footer">
+	      	<form id="msg-form">
+	      		<div class="form-row">
+	      			<div class="form-group col-10">
+	      				<textarea id="msg-text" class="form-control" tabindex="-1"></textarea>
+	      			</div>
+	        		<div class="form-group col-2">
+	        			<button id="submit-msg" type="submit" class="btn bg-white"><i class="fa fa-paper-plane" style="font-size:40px;color:#007bff"></i></button>
+	        		</div>
+	        	</div>
+	      	</form>
+	      	
+	      </div>
+	    </div>
+	  </div>
+	</div>
+{% endblock %}
