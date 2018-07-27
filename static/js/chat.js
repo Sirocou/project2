@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	$('#exampleModal').on('show.bs.modal', function () {
 	  	var input = $('#msg-text')[0];
-	  	console.log(input);
 	  	setTimeout(function(){input.focus();}, 100);
 		
 	});
@@ -122,26 +121,15 @@ document.addEventListener('DOMContentLoaded', () => {
         msgform.onsubmit = function(event){
         	event.preventDefault();
         	var message = document.getElementById('msg-text').value;
-        	
+            addMessage(message);
         	msgform.reset();
-			var messageElement = messageTemp2.cloneNode(true);
-			var messageUnameEl = messageElement.children[0].children[0];
-			var messageTextEl = messageElement.children[1];
-			messageElement.style.display = 'block';
+			
+            updateScroll();
 
-			messageUnameEl.innerHTML = uname;
-			messageTextEl.innerHTML = message;
-			messages.appendChild(messageElement);
-			updateScroll();
-        	addMessage(message);
-        	console.log(currentChannel);
-        	console.log(messageCount);
         	// Update the message count badge on channel classList
         	messageCount++;
         	var channelItem = $("[data-channel=\'"+currentChannel+"\']");
-        	console.log(channelItem[0]);
         	channelItem[0].children[0].innerHTML = messageCount;
-
         };
 
     });
@@ -215,6 +203,7 @@ function displayMessages(){
 			messages.innerHTML = "No messages in this channel yet";
 		}
 		else {
+            messages.innerHTML = "";
 			data.forEach(item => {
 				var messageElement = messageTemp2.cloneNode(true);
 				var messageUnameEl = messageElement.children[0].children[0];
@@ -227,7 +216,6 @@ function displayMessages(){
 			});
 		}
 		$('#exampleModal').modal('show');
-		console.log(document.activeElement);
 		updateScroll();
 	});
 }

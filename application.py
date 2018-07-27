@@ -12,7 +12,7 @@ users = ['ronnie']
 channels = [{
 		'chname':'avatar',
 		'creator':'someone',
-		'messages':[{'asdfsad':'asdfsda'}, {'sdfsadf':'asdfsadf'}]
+		'messages':[]
 		},
 		{
 			'chname':'star wars',
@@ -63,4 +63,4 @@ def addMessage(data):
 	if len(messages) > 100:
 		messages = messages[-100:]
 		next((item for item in channels if item["chname"] == data['chname']))['messages'] = messages
-	emit('message added', messages, broadcast=True)
+	emit('res messages', messages, broadcast=True)
